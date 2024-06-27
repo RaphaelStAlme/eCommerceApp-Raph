@@ -1,0 +1,9 @@
+<nav>
+  <%= link_to 'Accueil', root_path %>
+  <% if logged_in? %>
+    <%= link_to 'Déconnexion', logout_path, method: :delete %>
+  <% else %>
+    <%= link_to 'Connexion', login_path %> |
+    <%= link_to 'Inscription', register_path %>
+  <% end %>
+</nav>

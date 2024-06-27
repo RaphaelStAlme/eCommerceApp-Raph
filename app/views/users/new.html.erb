@@ -1,0 +1,23 @@
+<h1>Créer un compte</h1>
+
+<%= form_with model: @user, url: register_path, local: true do |form| %>
+  <div>
+    <%= form.label :email %>
+    <%= form.email_field :email %>
+  </div>
+  <div>
+    <%= form.label :password %>
+    <%= form.password_field :password %>
+  </div>
+  <div>
+    <%= form.label :password_confirmation, "Confirmation du mot de passe" %>
+    <%= form.password_field :password_confirmation %>
+  </div>
+  <div>
+    <%= form.check_box :become_seller %>
+    <%= form.label :become_seller, "Je souhaite devenir vendeur" %>
+  </div>
+  <div>
+    <%= form.submit "Créer un compte" %>
+  </div>
+<% end %>

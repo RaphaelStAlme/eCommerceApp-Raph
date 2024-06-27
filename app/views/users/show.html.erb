@@ -1,0 +1,3 @@
+<% unless current_user.seller %>
+  <%= button_to "Devenir vendeur", upgrade_to_seller_path, method: :post %>
+<% end %>
