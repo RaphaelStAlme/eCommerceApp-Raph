@@ -1,0 +1,40 @@
+<h1>Détails du Produit</h1>
+
+<p>
+  <strong>Nom :</strong>
+  <%= @product.name %>
+</p>
+
+<p>
+  <strong>Description :</strong>
+  <%= @product.description %>
+</p>
+
+<p>
+  <strong>Prix :</strong>
+  <%= number_to_currency(@product.price) %>
+</p>
+
+<p>
+  <strong>Stock :</strong>
+  <%= @product.stock %>
+</p>
+
+<p>
+  <strong>Vendeur :</strong>
+  <%= @product.seller.user.email %>
+</p>
+
+
+<%#= form_with url: orders_path, method: :post, local: true do %> 
+  <%= hidden_field_tag :product_id, @product.id %>
+  <div>
+    <%= label_tag :quantity, "Quantité" %>
+    <%= number_field_tag :quantity, 1, min: 1, max: @product.stock %>
+  </div>
+  <div>
+    <%= submit_tag "Acheter", class: "button" %>
+  </div>
+<%# end >
+
+<%= link_to 'Retour à la liste des produits', products_path %>
