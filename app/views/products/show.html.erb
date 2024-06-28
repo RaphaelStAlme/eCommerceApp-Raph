@@ -1,28 +1,28 @@
-<h1>Détails du Produit</h1>
+<h1>Product Details</h1>
 
 <p>
-  <strong>Nom :</strong>
+  <strong>Name:</strong>
   <%= @product.name %>
 </p>
 
 <p>
-  <strong>Description :</strong>
+  <strong>Description:</strong>
   <%= @product.description %>
 </p>
 
 <p>
-  <strong>Prix :</strong>
+  <strong>Price:</strong>
   <%= number_to_currency(@product.price) %>
 </p>
 
 <p>
-  <strong>Stock :</strong>
+  <strong>Stock:</strong>
   <%= @product.stock %>
 </p>
 
 <p>
-  <strong>Vendeur :</strong>
+  <strong>Seller:</strong>
   <%= @product.seller.user.email %>
 </p>
 
-<%= link_to 'Retour à la liste des produits', products_path %>
+<%= link_to 'Back to Product List', products_path %>

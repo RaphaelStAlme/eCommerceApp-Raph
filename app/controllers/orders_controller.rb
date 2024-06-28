@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-    before_action :require_login, :require_buyer
+    before_action :require_login, :require_buyer, :not_seller_product 
   
   def new
     @product = Product.find(params[:product_id])
@@ -31,6 +31,14 @@ class OrdersController < ApplicationController
     def require_buyer
       unless current_user.buyer
         flash[:alert] = "Vous devez être un acheteur pour passer une commande."
+        redirect_to products_path
+      end
+    end
+
+    def not_seller_product
+      @product = Product.find(params[:product_id])
+      if current_user.seller == @product.seller
+        flash[:alert] = "Vous ne pouvez pas acheter votre propre produit."
         redirect_to products_path
       end
     end

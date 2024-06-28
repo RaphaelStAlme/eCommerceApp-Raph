@@ -1,4 +1,4 @@
-<h1>Créer un compte</h1>
+<h1>Register an account</h1>
 
 <%= form_with model: @user, url: register_path, local: true do |form| %>
   <div>
@@ -10,14 +10,14 @@
     <%= form.password_field :password %>
   </div>
   <div>
-    <%= form.label :password_confirmation, "Confirmation du mot de passe" %>
+    <%= form.label :password_confirmation, "Password confirmation" %>
     <%= form.password_field :password_confirmation %>
   </div>
   <div>
     <%= form.check_box :become_seller %>
-    <%= form.label :become_seller, "Je souhaite devenir vendeur" %>
+    <%= form.label :become_seller, "I want to become seller" %>
   </div>
   <div>
-    <%= form.submit "Créer un compte" %>
+    <%= form.submit "Register" %>
   </div>
 <% end %>
