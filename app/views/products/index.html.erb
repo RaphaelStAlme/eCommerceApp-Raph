@@ -21,13 +21,13 @@
         <td><%= product.stock %></td>
         <td><%= link_to 'Show', product %></td>
         <% if @user != nil %>
-          <% if @user.seller %>
+          <% if @user.seller && current_user.email == product.seller.user.email %>
             <td><%= link_to 'Edit', edit_product_path(product), class: "button"%></td>
             <td><%= button_to 'Delete', product, method: :delete, data: { confirm: 'Are you sure ?' }, class: "button" %>
 </td>
           <% end %>
           <% if logged_in? && current_user.buyer && current_user.email != product.seller.user.email %>
-            <td><%= link_to 'Commander', product_new_order_path(product), class: "button" %></td>
+            <td><%= link_to 'Order', product_new_order_path(product), class: "button" %></td>
           <% end %>
         <% end %>
       </tr>

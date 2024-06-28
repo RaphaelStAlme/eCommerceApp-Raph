@@ -46,7 +46,6 @@ class ProductsController < ApplicationController
         @product.destroy
         flash[:alert] = 'Product deleted successfully.'
         redirect_to products_path
-
       end
     end
   
