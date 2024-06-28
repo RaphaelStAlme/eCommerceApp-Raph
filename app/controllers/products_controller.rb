@@ -40,8 +40,14 @@ class ProductsController < ApplicationController
     end
   
     def destroy
-      @product.destroy
-      redirect_to products_url, notice: 'Product deleted successfully.'
+      if(current_user.email != @product.seller.user.email)
+        redirect_to products_url, alert: "You can't delete a product that you didn't create."
+      else
+        @product.destroy
+        flash[:alert] = 'Product deleted successfully.'
+        redirect_to products_path
+
+      end
     end
   
     private
