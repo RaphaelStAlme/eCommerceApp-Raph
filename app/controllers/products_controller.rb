@@ -15,12 +15,12 @@ class ProductsController < ApplicationController
         if current_user_is_seller?
           @product = current_user.seller.products.build(product_params)
           if @product.save
-            redirect_to @product, notice: 'Produit créé avec succès.'
+            redirect_to @product, notice: 'Product created successfully.'
           else
             render :new
           end
         else
-          redirect_to root_path, alert: "Vous devez être un vendeur pour créer des produits."
+          redirect_to root_path, alert: "You need to be a seller to create a product."
         end
       end
   

@@ -12,7 +12,7 @@ class UsersController < ApplicationController
       if params[:user][:become_seller] == '1'
         @user.create_seller
       end
-      redirect_to root_path, notice: 'Compte créé avec succès.'
+      redirect_to root_path, notice: 'Account created successfully.'
     else
       render :new
     end
@@ -22,10 +22,10 @@ class UsersController < ApplicationController
     @user = current_user
     if params[:seller] == '1'
       @user.create_seller unless @user.seller.present?
-      flash[:notice] = "Vous êtes maintenant un vendeur."
+      flash[:notice] = "You are now a seller."
     else
       @user.seller.destroy if @user.seller.present?
-      flash[:notice] = "Vous n'êtes plus vendeur."
+      flash[:notice] = "You are no longer a seller."
     end
     redirect_to profile_path
   end

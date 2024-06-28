@@ -14,10 +14,10 @@ class OrdersController < ApplicationController
 
     if @order.save
       @product.update(stock: @product.stock - @order.quantity)
-      flash[:notice] = "Commande passée avec succès."
+      flash[:notice] = "Your order has been placed successfully."
       redirect_to @product
     else
-      flash[:alert] = "Échec de la commande. Veuillez réessayer."
+      flash[:alert] = "Your order could not be processed. Please try again."
       render :new
     end
   end
@@ -30,7 +30,7 @@ class OrdersController < ApplicationController
   
     def require_buyer
       unless current_user.buyer
-        flash[:alert] = "Vous devez être un acheteur pour passer une commande."
+        flash[:alert] = "You need to be a buyer to access this page."
         redirect_to products_path
       end
     end
@@ -38,7 +38,7 @@ class OrdersController < ApplicationController
     def not_seller_product
       @product = Product.find(params[:product_id])
       if current_user.seller == @product.seller
-        flash[:alert] = "Vous ne pouvez pas acheter votre propre produit."
+        flash[:alert] = "You can't buy your own product."
         redirect_to products_path
       end
     end

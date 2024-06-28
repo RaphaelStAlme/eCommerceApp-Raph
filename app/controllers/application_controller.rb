@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
     # Redirige vers la page de connexion si l'utilisateur n'est pas connecté
     def require_login
       unless logged_in?
-        flash[:alert] = "Vous devez être connecté pour accéder à cette page."
+        flash[:alert] = "You need to be logged in to access this page."
         redirect_to login_path
       end
     end
@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
     
     def require_seller
         unless current_user_is_seller?
-          flash[:alert] = "Vous devez être un vendeur pour accéder à cette page."
+          flash[:alert] = "You need to be a seller to access this page."
           redirect_to root_path
         end
     end 
