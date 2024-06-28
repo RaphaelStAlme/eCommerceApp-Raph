@@ -10,10 +10,11 @@ Rails.application.routes.draw do
   get '/profile', to: 'users#show'
   patch '/update_seller_status', to: 'users#update_seller_status'
 
-
-
   # Products
-  resources :products
+  resources :products do
+    get 'order', to: 'orders#new', as: 'new_order'
+    post 'order', to: 'orders#create'
+  end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
