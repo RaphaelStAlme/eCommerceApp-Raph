@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user, only: [:show, :upgrade_to_seller]
+  before_action :authenticate_user, only: [:show, :update_seller_status]
 
   def new
     @user = User.new
@@ -7,23 +7,27 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-
-    # Save the user
     if @user.save
       session[:user_id] = @user.id
-      redirect_to root_path, notice: 'Account created successfully.'
+      if params[:user][:become_seller] == '1'
+        @user.create_seller
+      end
+      redirect_to root_path, notice: 'Compte créé avec succès.'
     else
       render :new
     end
   end
 
-  def upgrade_to_seller
-    if current_user.seller.nil?
-      current_user.create_seller
-      redirect_to root_path, notice: "Vous êtes maintenant un vendeur."
+  def update_seller_status
+    @user = current_user
+    if params[:seller] == '1'
+      @user.create_seller unless @user.seller.present?
+      flash[:notice] = "Vous êtes maintenant un vendeur."
     else
-      redirect_to root_path, alert: "Vous êtes déjà un vendeur."
+      @user.seller.destroy if @user.seller.present?
+      flash[:notice] = "Vous n'êtes plus vendeur."
     end
+    redirect_to profile_path
   end
 
   def show

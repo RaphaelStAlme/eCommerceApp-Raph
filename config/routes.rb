@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   get  '/register', to: 'users#new'
   post '/register', to: 'users#create'
   get '/profile', to: 'users#show'
-  post '/upgrade_to_seller', to: 'users#upgrade_to_seller'
+  patch '/update_seller_status', to: 'users#update_seller_status'
+
 
 
   # Products

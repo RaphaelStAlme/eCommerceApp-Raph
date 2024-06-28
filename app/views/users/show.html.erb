@@ -6,12 +6,14 @@
   <p><strong>Type de compte:</strong> Acheteur</p>
 <% end %>
 
-<% if @user.seller %>
-  <p><strong>Type de compte:</strong> Vendeur</p>
-<% else %>
-  <%= form_with url: upgrade_to_seller_path, method: :post, local: true do %>
-    <%= button_to "Devenir vendeur", upgrade_to_seller_path, method: :post, class: "button" %>
-  <% end %>
+<%= form_with url: update_seller_status_path, method: :patch, local: true do %>
+  <div>
+    <%= label_tag :seller, "Je suis un vendeur" %>
+    <%= check_box_tag :seller, '1', @user.seller.present? %>
+  </div>
+  <div>
+    <%= submit_tag "Mettre à jour", class: "button" %>
+  </div>
 <% end %>
 
 <%= link_to 'Retour à la page d\'accueil', root_path %>
