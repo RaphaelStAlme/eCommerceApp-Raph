@@ -2,6 +2,7 @@
   <%= link_to 'Accueil', root_path %>
   <% if logged_in? %>
     <%= link_to 'Déconnexion', logout_path, method: :delete %>
+    <%= link_to 'Profil', profile_path %>
   <% else %>
     <%= link_to 'Connexion', login_path %> |
     <%= link_to 'Inscription', register_path %>
