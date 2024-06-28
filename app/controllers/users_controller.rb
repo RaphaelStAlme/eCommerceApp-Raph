@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user, only: [:show, :upgrade_to_seller]
+
   def new
     @user = User.new
   end
@@ -24,9 +26,17 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    @user = current_user
+  end
+
   private
 
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation)
+  end
+
+  def authenticate_user
+    render json: { error: 'Not Authorized' }, status: :unauthorized unless current_user
   end
 end

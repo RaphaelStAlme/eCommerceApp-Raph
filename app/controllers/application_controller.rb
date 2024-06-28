@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-    before_action :authenticate_user
     helper_method :current_user, :logged_in?
   
     private
@@ -31,7 +30,5 @@ class ApplicationController < ActionController::Base
           flash[:alert] = "Vous devez être un vendeur pour accéder à cette page."
           redirect_to root_path
         end
-    end
-
-   
+    end 
   end

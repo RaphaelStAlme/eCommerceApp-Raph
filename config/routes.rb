@@ -2,11 +2,12 @@ Rails.application.routes.draw do
   # Sessions
   get    '/login',  to: 'sessions#new'
   post   '/login',  to: 'sessions#create'
-  delete '/logout', to: 'sessions#destroy'
+  get '/logout', to: 'sessions#destroy'
 
   # Users
   get  '/register', to: 'users#new'
   post '/register', to: 'users#create'
+  get '/profile', to: 'users#show'
   post '/upgrade_to_seller', to: 'users#upgrade_to_seller'
 
 
